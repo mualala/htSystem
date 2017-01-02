@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>htSystem</display-name>
+  
+  <!-- 注册登录验证 -->
+  <servlet>
+  	<servlet-name>loginServlet</servlet-name>
+  	<servlet-class>htSys.controller.user.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>loginServlet</servlet-name>
+  	<url-pattern>/loginServlet.do</url-pattern>
+  </servlet-mapping>
+  <!-- 用户注册 -->
+  <servlet>
+  	<servlet-name>registeServlet</servlet-name>
+  	<servlet-class>htSys.controller.user.RegisteUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>registeServlet</servlet-name>
+  	<url-pattern>/registeServlet.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  <!-- 用户登录页面过滤 -->
+  <filter>
+  	<filter-name>LoginFilter</filter-name>
+  	<filter-class>htSys.controller.filter.LoginFilter</filter-class>
+  	<init-param>
+  		<description>初始化不拦截的请求</description>
+  		<param-name>noFilter</param-name>
+  		<param-value>login.jsp;loginServlet.do;randomcode.jpg;registeServlet.do;bootstrap</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>LoginFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+  
+  <!-- 报表查询 -->
+  <servlet>
+  	<description>查询用户报表</description>
+  	<servlet-name>userReport</servlet-name>
+  	<servlet-class>htSys.controller.report.UserReport</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>userReport</servlet-name>
+  	<url-pattern>/userReport.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<description>删除一个或多个用户</description>
+  	<servlet-name>userDelete</servlet-name>
+  	<servlet-class>htSys.controller.report.UserDelete</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>userDelete</servlet-name>
+  	<url-pattern>/userDelete.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<description>用户信息更新edit</description>
+  	<servlet-name>userEdit</servlet-name>
+  	<servlet-class>htSys.controller.report.UserEdit</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>userEdit</servlet-name>
+  	<url-pattern>/userEdit.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <!-- 图片管理 -->
+  <servlet>
+  	<description>图片上传</description>
+  	<servlet-name>picUpload</servlet-name>
+  	<servlet-class>htSys.controller.picture.UploadPicture</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>picUpload</servlet-name>
+  	<url-pattern>/picUpload.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<description>图片加载到服务器本地</description>
+  	<servlet-name>picUploadLocal</servlet-name>
+  	<servlet-class>htSys.controller.picture.LoadPicToLocal</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>picUploadLocal</servlet-name>
+  	<url-pattern>/picLoaclService.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<description>删除单张图片</description>
+  	<servlet-name>picOneDelete</servlet-name>
+  	<servlet-class>htSys.controller.picture.DeleteOnePicture</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>picOneDelete</servlet-name>
+  	<url-pattern>/picOneDelete.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<description>下载单张图片</description>
+  	<servlet-name>picOneDown</servlet-name>
+  	<servlet-class>htSys.controller.picture.DownOnePicture</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>picOneDown</servlet-name>
+  	<url-pattern>/picOneDown.do</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  <!-- 注册Kaptcha验证码组件 -->
+  <servlet>
+  	<servlet-name>Kaptcha_checkcode</servlet-name>
+  	<servlet-class>com.google.code.kaptcha.servlet.KaptchaServlet</servlet-class>
+  	<init-param>
+  		<description>图片边框，合法值：yes,no</description>
+  		<param-name>kaptcha.border</param-name>
+  		<param-value>yes</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>图片边框颜色</description>
+  		<param-name>kaptcha.border.color</param-name>
+  		<param-value>gray</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>图片宽度</description>
+  		<param-name>kaptcha.image.width</param-name>
+  		<param-value>110</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>图片高度</description>
+  		<param-name>kaptcha.image.height</param-name>
+  		<param-value>34</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>验证码字体配置,大小默认40px</description>
+  		<param-name>kaptcha.textproducer.font.size</param-name>
+  		<param-value>30</param-value>
+  	</init-param>
+  	<init-param>
+  		<description>文本集合,验证码值从此集合中获取</description>
+  		<param-name>kaptcha.textproducer.char.string</param-name>
+  		<param-value>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</param-value>
+  	</init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Kaptcha_checkcode</servlet-name>
+  	<url-pattern>/randomcode.jpg</url-pattern>
+  </servlet-mapping>
+  
+  
+  
+  
+  
+  <welcome-file-list>
+    <welcome-file>login.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
