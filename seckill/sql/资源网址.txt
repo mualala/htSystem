@@ -1,0 +1,6 @@
+logback≈‰÷√£∫
+http://logback.qos.ch/manual/configuration.html
+spring≈‰÷√£∫
+http://docs.spring.io/spring/docs/
+mybatis≈‰÷√£∫
+http://mybatis.github.io/mybatis-3/zh/index.html
